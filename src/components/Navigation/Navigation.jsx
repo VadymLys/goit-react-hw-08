@@ -3,7 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import css from "./Navigation.module.css";
 
 export const Navigation = () => {
-  const isLoggedIn = useAuth();
+  const { isLoggedIn } = useAuth();
   return (
     <nav>
       <NavLink className={css.link}>Home</NavLink>

@@ -5,7 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
-  const user = useAuth();
+  const { user } = useAuth();
 
   return (
     <div className={css.wrapper}>
