@@ -15,41 +15,47 @@ const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 
 const App = () => {
   const dispatch = useDispatch();
-  const user = useAuth();
+  const isRefreshing = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return user ? (
-    <b>Refreshing user...</b>
-  ) : (
+  return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      {isRefreshing ? (
+        <b>Refreshing user...</b>
+      ) : (
+        <Routes>
+          <Route path="/" element={<HomePage />} />
 
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute
-              redirectTo="/contacts"
-              component={<RegisterPage />}
-            />
-          }
-        />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegisterPage />}
+              />
+            }
+          />
 
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="contacts" component={<LoginPage />} />
-          }
-        />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                redirectTo="contacts"
+                component={<LoginPage />}
+              />
+            }
+          />
 
-        <Route
-          path="/contacts"
-          element={<PrivateRoute redirectTo="/login" />}
-        />
-      </Routes>
+          <Route
+            path="/contacts"
+            element={<PrivateRoute redirectTo="/login" />}
+          />
+        </Routes>
+      )}
+      ;
     </Layout>
   );
 };
