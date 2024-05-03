@@ -1,26 +1,56 @@
-import "modern-normalize";
-import css from "../App/App.module.css";
-import SearchBox from "../SearchBox/SearchBox";
-import ContactForm from "../ContactForm/ContactForm";
-import ContactList from "../ContactList/ContactList";
-import { useEffect } from "react";
+import { useEffect, lazy } from "react";
 import { useDispatch } from "react-redux";
-import { fetchContacts } from "../../redux/contactsOps";
+import { Route, Routes } from "react-router-dom";
+import { Layout } from "../Layout/Layout";
+import { PrivateRoute } from "../PrivateRoute";
+import { RestrictedRoute } from "../RestrictedRoute";
+import { useAuth } from "../../hooks/useAuth";
+import { refreshUser } from "../../redux/auth/operations";
+
+const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
+const RegisterPage = lazy(() =>
+  import("../../pages/RegisterPage/RegisterPage")
+);
+const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 
 const App = () => {
   const dispatch = useDispatch();
+  const user = useAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <div className={css.container}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      <ContactList />
-    </div>
+  return user ? (
+    <b>Refreshing user...</b>
+  ) : (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegisterPage />}
+            />
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="contacts" component={<LoginPage />} />
+          }
+        />
+
+        <Route
+          path="/contacts"
+          element={<PrivateRoute redirectTo="/login" />}
+        />
+      </Routes>
+    </Layout>
   );
 };
 export default App;
