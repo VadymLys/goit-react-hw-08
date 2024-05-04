@@ -1,9 +1,11 @@
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 
 export const DocumentTitle = ({ children }) => {
   return (
-    <Helmet>
-      <title>{children}</title>
-    </Helmet>
+    {/*<Helmet> */}
+     
+    <h2>{children}</h2> 
+      
+      {/*</Helmet> */ }
   );
 };

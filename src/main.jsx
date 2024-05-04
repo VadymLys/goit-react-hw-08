@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { HelmetProvider } from "react-helmet-async";
+// import { HelmetProvider } from "react-helmet-async";
 import App from "./components/App/App";
 import "modern-normalize";
 import "./index.css";
@@ -14,9 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <HelmetProvider>
-            <App />
-          </HelmetProvider>
+          {/* <HelmetProvider> */}
+          <App />
+          {/* </HelmetProvider> */}
         </BrowserRouter>
       </PersistGate>
     </Provider>
