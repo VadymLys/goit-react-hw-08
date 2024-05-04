@@ -14,7 +14,7 @@ export const LoginForm = () => {
     password: "",
   };
 
-  const FeedbackSchema = Yup.object.shape({
+  const FeedbackSchema = Yup.object().shape({
     email: Yup.string()
       .email()
       .trim("Don't use whitespaces")

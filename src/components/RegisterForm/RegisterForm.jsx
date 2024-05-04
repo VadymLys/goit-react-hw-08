@@ -13,7 +13,7 @@ const RegisterForm = () => {
     password: "",
   };
 
-  const FeedbackSchema = Yup.object.shape({
+  const FeedbackSchema = Yup.object().shape({
     name: Yup.string()
       .trim("Don't use whitespaces")
       .min(3, "Must be at least 3 characters")
@@ -23,12 +23,12 @@ const RegisterForm = () => {
       .email()
       .trim("Don't use whitespaces")
       .min(3, "Must be at least 3 characters")
-      .max(15, "Must be 20 characters or less")
+      .max(30, "Must be 20 characters or less")
       .required("Required"),
     password: Yup.string()
       .trim("Don't use whitespaces")
       .min(3, "Must be at least 3 characters")
-      .max(15, "Must be 15 characters or less")
+      .max(30, "Must be 15 characters or less")
       .required("Required"),
   });
 
