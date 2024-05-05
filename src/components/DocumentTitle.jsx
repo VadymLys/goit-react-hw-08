@@ -1,3 +1,9 @@
+import { Helmet } from "react-helmet";
+
 export const DocumentTitle = ({ children }) => {
-  return <h2>{children}</h2>;
+  return (
+    <Helmet>
+      <title>{children}</title>;
+    </Helmet>
+  );
 };

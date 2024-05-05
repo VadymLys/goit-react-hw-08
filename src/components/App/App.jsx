@@ -6,6 +6,7 @@ import { PrivateRoute } from "../PrivateRoute";
 import { RestrictedRoute } from "../RestrictedRoute";
 import { useAuth } from "../../hooks/useAuth";
 import { refreshUser } from "../../redux/auth/operations";
+import { ContactsPage } from "../../pages/ContactsPage/ContactsPage";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const RegisterPage = lazy(() =>
@@ -43,7 +44,7 @@ const App = () => {
             path="/login"
             element={
               <RestrictedRoute
-                redirectTo="contacts"
+                redirectTo="/contacts"
                 component={<LoginPage />}
               />
             }
@@ -51,11 +52,12 @@ const App = () => {
 
           <Route
             path="/contacts"
-            element={<PrivateRoute redirectTo="/login" />}
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
           />
         </Routes>
       )}
-      ;
     </Layout>
   );
 };
