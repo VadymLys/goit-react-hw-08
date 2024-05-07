@@ -4,6 +4,7 @@ import { useId } from "react";
 import css from "../ContactForm/ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
 
 const ContactForm = () => {
   const initialValues = {
@@ -31,6 +32,7 @@ const ContactForm = () => {
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values));
+    toast.success("Yey, you add new contact");
     actions.resetForm();
   };
 
@@ -65,6 +67,7 @@ const ContactForm = () => {
         <button type="submit" className={css.btn}>
           Add contact
         </button>
+        <Toaster position="top-right" />
       </Form>
     </Formik>
   );
