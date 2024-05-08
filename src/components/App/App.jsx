@@ -7,6 +7,7 @@ import { RestrictedRoute } from "../RestrictedRoute";
 import { useAuth } from "../../hooks/useAuth";
 import { refreshUser } from "../../redux/auth/operations";
 import { ContactsPage } from "../../pages/ContactsPage/ContactsPage";
+import css from "../App/App.module.css";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const RegisterPage = lazy(() =>
@@ -23,42 +24,47 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Layout>
-      {isRefreshing ? (
-        <b>Refreshing user...</b>
-      ) : (
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+    <div className={css.container}>
+      <Layout>
+        {isRefreshing ? (
+          <b>Refreshing user...</b>
+        ) : (
+          <Routes>
+            <Route path="/" element={<HomePage />} />
 
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<RegisterPage />}
-              />
-            }
-          />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  redirectTo="/contacts"
+                  component={<RegisterPage />}
+                />
+              }
+            />
 
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<LoginPage />}
-              />
-            }
-          />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute
+                  redirectTo="/contacts"
+                  component={<LoginPage />}
+                />
+              }
+            />
 
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
-            }
-          />
-        </Routes>
-      )}
-    </Layout>
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<ContactsPage />}
+                />
+              }
+            />
+          </Routes>
+        )}
+      </Layout>
+    </div>
   );
 };
 export default App;

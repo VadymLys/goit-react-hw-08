@@ -3,12 +3,15 @@ import { FaUserLarge } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
+import MaterialButton from "../MaterialButton/MaterialButton";
+import toast, { Toaster } from "react-hot-toast";
 
 const Contact = ({ contact }) => {
   const dispatch = useDispatch();
 
   const handleDeleteContact = () => {
     dispatch(deleteContact(contact.id));
+    toast.success("You're deleted your contact");
   };
 
   return (
@@ -23,9 +26,14 @@ const Contact = ({ contact }) => {
           {contact.number}
         </p>
       </li>
-      <button className={css.btn} type="button" onClick={handleDeleteContact}>
+      <MaterialButton
+        className={css.btn}
+        type="button"
+        onClick={handleDeleteContact}
+      >
         Delete
-      </button>
+      </MaterialButton>
+      <Toaster position="top-right" />
     </div>
   );
 };

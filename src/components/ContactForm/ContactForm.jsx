@@ -1,10 +1,12 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId } from "react";
 import css from "../ContactForm/ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
+import MaterialButton from "../MaterialButton/MaterialButton";
+import MaterialInput from "../LoginForm/MaterialInput/MaterialInput";
 
 const ContactForm = () => {
   const initialValues = {
@@ -45,7 +47,12 @@ const ContactForm = () => {
       <Form className={css.containerBook}>
         <div>
           <label htmlFor={nameId}>name</label>
-          <Field type="text" name="name" id={nameId} className={css.field} />
+          <MaterialInput
+            type="text"
+            name="name"
+            id={nameId}
+            className={css.field}
+          />
           <ErrorMessage
             name="name"
             component="span"
@@ -55,7 +62,12 @@ const ContactForm = () => {
         </div>
         <div>
           <label htmlFor={numberId}>number</label>
-          <Field type="tel" name="number" id={numberId} className={css.field} />
+          <MaterialInput
+            type="tel"
+            name="number"
+            id={numberId}
+            className={css.field}
+          />
           <ErrorMessage
             name="number"
             component="span"
@@ -64,9 +76,9 @@ const ContactForm = () => {
           />
         </div>
 
-        <button type="submit" className={css.btn}>
+        <MaterialButton type="submit" className={css.btn}>
           Add contact
-        </button>
+        </MaterialButton>
         <Toaster position="top-right" />
       </Form>
     </Formik>

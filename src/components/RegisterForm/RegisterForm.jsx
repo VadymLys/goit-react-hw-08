@@ -5,6 +5,7 @@ import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import css from "./RegisterForm.module.css";
+import MaterialButton from "../MaterialButton/MaterialButton";
 
 const RegisterForm = () => {
   const initialValues = {
@@ -71,7 +72,7 @@ const RegisterForm = () => {
           id={`${passwordId} error`}
         />
 
-        <button type="submit">Register</button>
+        <MaterialButton type="submit">Register</MaterialButton>
       </Form>
     </Formik>
   );

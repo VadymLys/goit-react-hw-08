@@ -5,6 +5,7 @@ import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import css from "../RegisterForm/RegisterForm.module.css";
+import MaterialButton from "../MaterialButton/MaterialButton";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ export const LoginForm = () => {
           id={`${passwordId} error`}
         />
 
-        <button type="submit">Log In</button>
+        <MaterialButton type="submit">Log In</MaterialButton>
       </Form>
     </Formik>
   );
