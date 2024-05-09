@@ -4,7 +4,7 @@ import css from "./Navigation.module.css";
 import clsx from "clsx";
 
 const buildLinkClass = ({ isActive }) => {
-  return clsx(css.nav, isActive && css.active);
+  return clsx(css.link, isActive && css.active);
 };
 
 export const Navigation = () => {

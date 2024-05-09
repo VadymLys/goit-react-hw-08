@@ -50,22 +50,31 @@ const RegisterForm = () => {
       onSubmit={handleSubmit}
     >
       <Form className={css.form} autoComplete="off">
-        <label htmlFor={nameId} className={css.label}>
-          Name
-        </label>
-        <Field type="text" name="name" id={nameId} />
+        <Field
+          type="text"
+          name="name"
+          id={nameId}
+          className={css.field}
+          placeholder="Name"
+        />
         <ErrorMessage name="name" component="span" id={`${nameId} error`} />
 
-        <label htmlFor={emailId} className={css.label}>
-          Email
-        </label>
-        <Field type="email" name="email" id={emailId} />
+        <Field
+          type="email"
+          name="email"
+          id={emailId}
+          className={css.field}
+          placeholder="Email"
+        />
         <ErrorMessage name="email" component="span" id={`${emailId} error`} />
 
-        <label htmlFor={passwordId} className={css.label}>
-          Password
-        </label>
-        <Field type="password" name="password" id={passwordId} />
+        <Field
+          type="password"
+          name="password"
+          id={passwordId}
+          className={css.field}
+          placeholder="Password"
+        />
         <ErrorMessage
           name="password"
           component="span"

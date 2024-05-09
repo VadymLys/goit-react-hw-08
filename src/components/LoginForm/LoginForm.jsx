@@ -38,16 +38,22 @@ export const LoginForm = () => {
       onSubmit={handleSubmit}
     >
       <Form autoComplete="off" className={css.form}>
-        <label htmlFor={emailId} className={css.label}>
-          Email
-        </label>
-        <Field type="email" name="email" id={emailId}></Field>
+        <Field
+          type="email"
+          name="email"
+          id={emailId}
+          className={css.field}
+          placeholder="Email"
+        />
         <ErrorMessage name="email" component="span" id={`${emailId} error`} />
 
-        <label htmlFor={passwordId} className={css.label}>
-          Password
-        </label>
-        <Field type="password" name="password" id={passwordId}></Field>
+        <Field
+          type="password"
+          name="password"
+          id={passwordId}
+          className={css.field}
+          placeholder="Password"
+        />
         <ErrorMessage
           name="password"
           component="span"

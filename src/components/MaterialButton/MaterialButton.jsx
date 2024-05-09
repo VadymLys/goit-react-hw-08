@@ -6,7 +6,6 @@ export default function MaterialButton({ children, onClick, type }) {
       <Button variant="contained" onClick={onClick} type={type}>
         {children}
       </Button>
-      ;
     </>
   );
 }

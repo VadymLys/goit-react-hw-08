@@ -1,12 +1,11 @@
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useId } from "react";
-import css from "../ContactForm/ContactForm.module.css";
+import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
 import MaterialButton from "../MaterialButton/MaterialButton";
-import MaterialInput from "../LoginForm/MaterialInput/MaterialInput";
 
 const ContactForm = () => {
   const initialValues = {
@@ -46,12 +45,12 @@ const ContactForm = () => {
     >
       <Form className={css.containerBook}>
         <div>
-          <label htmlFor={nameId}>name</label>
-          <MaterialInput
+          <Field
             type="text"
             name="name"
             id={nameId}
             className={css.field}
+            placeholder="Name"
           />
           <ErrorMessage
             name="name"
@@ -61,12 +60,12 @@ const ContactForm = () => {
           />
         </div>
         <div>
-          <label htmlFor={numberId}>number</label>
-          <MaterialInput
+          <Field
             type="tel"
             name="number"
             id={numberId}
             className={css.field}
+            placeholder="Phone number"
           />
           <ErrorMessage
             name="number"
