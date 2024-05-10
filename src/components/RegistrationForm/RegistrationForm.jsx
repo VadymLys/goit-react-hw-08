@@ -4,7 +4,7 @@ import { useId } from "react";
 
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
-import css from "./RegisterForm.module.css";
+import css from "./RegistrationForm.module.css";
 import MaterialButton from "../MaterialButton/MaterialButton";
 
 const RegisterForm = () => {

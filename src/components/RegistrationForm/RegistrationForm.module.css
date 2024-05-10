@@ -26,7 +26,7 @@
 }
 
 .field:is(:hover, :focus) {
-  border-bottom: 1px floralwhite solid;
+  border: 2px rgb(224, 208, 175) solid;
 }
 
 .field::placeholder {

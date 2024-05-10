@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeNameFilter } from "../../redux/filters/slice";
-import MaterialInput from "../LoginForm/MaterialInput/MaterialInput";
+import MaterialInput from "../MaterialInput/MaterialInput";
+import { selectNameFilter } from "../../redux/contacts/selectors";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
-  const nameFilter = useSelector((state) => state.filters.name);
+  const nameFilter = useSelector(selectNameFilter);
 
   const handleChange = (evt) => {
     dispatch(changeNameFilter(evt.target.value.toLowerCase()));
