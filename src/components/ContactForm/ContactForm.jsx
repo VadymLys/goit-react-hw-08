@@ -5,7 +5,7 @@ import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
-import MaterialButton from "../MaterialButton/MaterialButton";
+import MaterialButton from "../MaterialComponents/MaterialButton/MaterialButton";
 
 const ContactForm = () => {
   const initialValues = {

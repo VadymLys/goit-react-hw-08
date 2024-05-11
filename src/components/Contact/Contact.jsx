@@ -3,7 +3,7 @@ import { FaUserLarge } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
-import MaterialButton from "../MaterialButton/MaterialButton";
+import MaterialButton from "../MaterialComponents/MaterialButton/MaterialButton";
 import toast, { Toaster } from "react-hot-toast";
 
 const Contact = ({ contact }) => {
@@ -16,7 +16,7 @@ const Contact = ({ contact }) => {
 
   return (
     <div className={css.contactContainer}>
-      <li>
+      <div>
         <p className={css.userdata}>
           <FaUserLarge />
           {contact.name}
@@ -25,7 +25,7 @@ const Contact = ({ contact }) => {
           <FaPhoneAlt />
           {contact.number}
         </p>
-      </li>
+      </div>
       <MaterialButton
         className={css.btn}
         type="button"

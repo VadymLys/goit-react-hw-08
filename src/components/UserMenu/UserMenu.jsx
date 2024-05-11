@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../../redux/auth/operations";
 import css from "../UserMenu/UserMenu.module.css";
 import { useAuth } from "../../hooks/useAuth";
-import MaterialButton from "../MaterialButton/MaterialButton";
+import MaterialButton from "../MaterialComponents/MaterialButton/MaterialButton";
 
 export const UserMenu = () => {
   const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import css from "../RegistrationForm/RegistrationForm.module.css";
-import MaterialButton from "../MaterialButton/MaterialButton";
+import MaterialButton from "../MaterialComponents/MaterialButton/MaterialButton";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
