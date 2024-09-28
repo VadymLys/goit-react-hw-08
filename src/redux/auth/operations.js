@@ -1,7 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://backend-for-phone-book.onrender.com";
+axios.defaults.baseURL = "http://localhost:3000";
+
+axios.defaults.withCredentials = true;
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -32,8 +34,10 @@ export const logIn = createAsyncThunk(
     try {
       const res = await axios.post("/users/login", credentials);
       setAuthHeader(res.data.token);
+      console.log("Registration response:", res);
       return res.data;
     } catch (err) {
+      console.error("Registration error:", err);
       return thunkAPI.rejectWithValue(err.message);
     }
   }

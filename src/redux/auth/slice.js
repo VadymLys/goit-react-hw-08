@@ -16,11 +16,13 @@ const authSlice = createSlice({
     builder
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        console.log(action.payload.user);
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        console.log(action.payload.user);
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -30,10 +32,10 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(refreshUser.pending, (state) => {
-        state.isRefreshing = false;
+        state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
