@@ -26,15 +26,16 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload.data.contacts;
+        state.items = action.payload.data;
       })
       .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items.push(action.payload);
+        console.log(action.payload);
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        state.items = action.payload.data;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.items = [];

@@ -10,7 +10,7 @@ import MaterialButton from "../MaterialComponents/MaterialButton/MaterialButton"
 const ContactForm = () => {
   const initialValues = {
     name: "",
-    number: "",
+    phoneNumber: "",
   };
 
   const nameId = useId();
@@ -22,7 +22,7 @@ const ContactForm = () => {
       .min(3, "Must be at least 3 characters")
       .max(50, "Must be 50 characters or less")
       .required("Required"),
-    number: Yup.string()
+    phoneNumber: Yup.string()
       .trim("Don't use whitespaces")
       .min(3, "Must be at least 3 characters")
       .max(50, "Must be 50 characters or less")
@@ -62,13 +62,13 @@ const ContactForm = () => {
         <div>
           <Field
             type="tel"
-            name="number"
+            name="phoneNumber"
             id={numberId}
             className={css.field}
             placeholder="Phone number"
           />
           <ErrorMessage
-            name="number"
+            name="phoneNumber"
             component="span"
             id={`${numberId} error`}
             className={css.error}

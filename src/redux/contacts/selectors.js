@@ -16,11 +16,15 @@ export const selectError = createSelector(
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
   (contacts, filterName) => {
-    return contacts?.filter(
-      (contact) =>
-        (contact.name !== undefined &&
-          contact.name.toLowerCase().includes(filterName.toLowerCase())) ||
-        contact.number.includes(filterName ? filterName.toLowerCase() : "")
-    );
+    return contacts?.filter((contact) => {
+      const nameMatches =
+        contact.name !== undefined &&
+        contact.name.toLowerCase().includes(filterName.toLowerCase());
+      const numberMatches =
+        contact.number !== undefined &&
+        contact.number.includes(filterName ? filterName.toLowerCase() : "");
+
+      return nameMatches || numberMatches;
+    });
   }
 );

@@ -10,7 +10,7 @@ const Contact = ({ contact }) => {
   const dispatch = useDispatch();
 
   const handleDeleteContact = () => {
-    dispatch(deleteContact(contact.id));
+    dispatch(deleteContact(contact._id));
     toast.success("You're deleted your contact");
   };
 
@@ -23,7 +23,7 @@ const Contact = ({ contact }) => {
         </p>
         <p className={css.userdata}>
           <FaPhoneAlt />
-          {contact.number}
+          {contact.phoneNumber}
         </p>
       </div>
       <MaterialButton
