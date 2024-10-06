@@ -1,13 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../api/api";
 // axios.defaults.baseURL = "https://backend-for-phone-book.onrender.com";
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
-  async (_, thunkApi) => {
+  async ({ page = 1, perPage = 10 }, thunkApi) => {
     try {
-      const res = await axios.get("/contacts");
-      return res.data;
+      const res = await axios.get(`/contacts?page=${page}&perPage=${perPage}`);
+      console.log(res);
+      return {
+        contacts: res.data.data.contacts,
+        total: res.data.data.total,
+        pagination: res.data.data.pagination,
+      };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

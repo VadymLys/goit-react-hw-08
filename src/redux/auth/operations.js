@@ -1,17 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-axios.defaults.baseURL = "https://backend-for-phone-book.onrender.com";
-
-axios.defaults.withCredentials = true;
-
-const setAuthHeader = (token) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = "";
-};
+import axios, { setAuthHeader, clearAuthHeader } from "../../api/api.js";
 
 export const register = createAsyncThunk(
   "auth/register",

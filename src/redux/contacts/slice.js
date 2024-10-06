@@ -6,6 +6,8 @@ const initialState = {
   isLoading: false,
   error: null,
   items: [],
+  total: 0,
+  pagination: { currentPage: 1, totalPages: 1 },
 };
 
 const isPending = (action) =>
@@ -26,7 +28,9 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload.data;
+        state.items = action.payload.contacts;
+        state.total = action.payload.total;
+        state.pagination = action.payload.pagination;
       })
       .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -35,10 +39,14 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload.data;
+        state.items = state.items.filter(
+          (contact) => contact.id !== action.payload
+        );
       })
       .addCase(logOut.fulfilled, (state) => {
         state.items = [];
+        state.pagination = { currentPage: 1, totalPages: 1 };
+        state.total = 0;
         state.error = null;
         state.isLoading = false;
       })
@@ -51,4 +59,3 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export const selectContacts = (state) => state.contacts.items;

@@ -12,7 +12,7 @@ export const ContactsPage = () => {
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchContacts({ page: 2, perPage: 15 }));
   }, [dispatch]);
 
   return (
