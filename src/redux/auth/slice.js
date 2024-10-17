@@ -24,6 +24,7 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         console.log(action.payload.user);
         state.token = action.payload.token;
+        console.log(action.payload.token);
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state) => {
@@ -35,7 +36,10 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload.data.accessToken;
+        state.user = action.payload.user;
+        console.log(action.payload.user);
+        state.token = action.payload.token;
+        console.log(action.payload.token);
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })

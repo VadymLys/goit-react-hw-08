@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://backend-for-phone-book.onrender.com";
+axios.defaults.baseURL = "http://localhost:3000";
 
 axios.defaults.withCredentials = true;
 

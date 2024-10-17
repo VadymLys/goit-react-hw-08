@@ -17,11 +17,13 @@ const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  const { isRefreshing, isLoggedIn } = useAuth();
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (isLoggedIn && !isRefreshing) {
+      dispatch(refreshUser());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <div className={css.container}>

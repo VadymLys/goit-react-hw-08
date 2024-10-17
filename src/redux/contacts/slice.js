@@ -7,7 +7,14 @@ const initialState = {
   error: null,
   items: [],
   total: 0,
-  pagination: { currentPage: 1, totalPages: 1 },
+  pagination: {
+    page: 1,
+    perPage: 10,
+    totalPages: 1,
+    totalItems: 0,
+    hasNextPage: false,
+    hasPreviousPage: false,
+  },
 };
 
 const isPending = (action) =>
@@ -30,7 +37,10 @@ const contactsSlice = createSlice({
         state.isLoading = false;
         state.items = action.payload.contacts;
         state.total = action.payload.total;
-        state.pagination = action.payload.pagination;
+        state.pagination = {
+          ...state.pagination,
+          ...action.payload.pagination,
+        };
       })
       .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -45,7 +55,7 @@ const contactsSlice = createSlice({
       })
       .addCase(logOut.fulfilled, (state) => {
         state.items = [];
-        state.pagination = { currentPage: 1, totalPages: 1 };
+        state.pagination = { page: 1, totalPages: 1 };
         state.total = 0;
         state.error = null;
         state.isLoading = false;

@@ -6,6 +6,8 @@ export const selectTotalContacts = (state) => state.contacts.total;
 export const selectPagination = (state) => state.contacts.pagination;
 const selectContactsState = (state) => state.contacts;
 
+console.log(selectPagination);
+
 export const selectIsLoading = createSelector(
   [selectContactsState],
   (contacts) => contacts.isLoading

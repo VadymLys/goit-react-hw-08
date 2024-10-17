@@ -1,5 +1,8 @@
 import { useEffect } from "react";
-import { selectIsLoading } from "../../redux/contacts/selectors";
+import {
+  selectIsLoading,
+  selectPagination,
+} from "../../redux/contacts/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { DocumentTitle } from "../../components/DocumentTitle";
 import ContactList from "../../components/ContactList/ContactList";
@@ -10,10 +13,10 @@ import SearchBox from "../../components/SearchBox/SearchBox";
 export const ContactsPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-
+  const { page, perPage } = useSelector(selectPagination);
   useEffect(() => {
-    dispatch(fetchContacts({ page: 2, perPage: 15 }));
-  }, [dispatch]);
+    dispatch(fetchContacts({ page, perPage }));
+  }, [dispatch, page, perPage]);
 
   return (
     <div>

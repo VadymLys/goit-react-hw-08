@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { setAuthHeader, clearAuthHeader } from "../../api/api.js";
+import toast from "react-hot-toast";
 
 export const register = createAsyncThunk(
   "auth/register",
@@ -8,8 +9,10 @@ export const register = createAsyncThunk(
       const res = await axios.post("/users/signup", credentials);
       setAuthHeader(res.data.token);
       console.log("Registration response:", res);
+      toast.success("Yey, registration is succed");
       return res.data;
     } catch (err) {
+      toast.error("Something goes wrong");
       console.error("Registration error:", err);
       return thunkApi.rejectWithValue(err.message);
     }
@@ -23,6 +26,7 @@ export const logIn = createAsyncThunk(
       const res = await axios.post("/users/login", credentials);
       setAuthHeader(res.data.token);
       console.log("Registration response:", res);
+      toast.success("Yey, you are log in");
       return res.data;
     } catch (err) {
       console.error("Registration error:", err);
@@ -45,14 +49,15 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
-    }
-
     try {
+      console.log(persistedToken); // if (persistedToken === null) {
+      //   return thunkAPI.rejectWithValue("Unable to fetch user");
+      // }
       setAuthHeader(persistedToken);
-      const res = await axios.get("/users/current");
+      const res = await axios.get("/users/current", {
+        withCredentials: true,
+      });
+      console.log(res);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
