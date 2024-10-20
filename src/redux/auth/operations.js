@@ -27,7 +27,6 @@ export const logIn = createAsyncThunk(
       toast.success("Welcome back!");
       return res.data;
     } catch (err) {
-      toast.error("Wrong password or email. Please try again!");
       return thunkAPI.rejectWithValue(err.message);
     }
   }
