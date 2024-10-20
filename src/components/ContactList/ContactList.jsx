@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import css from "../ContactList/ContactList.module.css";
 import { selectFilteredContacts } from "../../redux/contacts/selectors";
-import Pagination from "../Pagination";
+import Pagination from "../Pagination/Pagination";
 
 const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
@@ -16,7 +16,9 @@ const ContactList = () => {
           </li>
         ))}
       </ul>
-      <Pagination />
+      <div className={css.pagination}>
+        <Pagination />
+      </div>
     </>
   );
 };

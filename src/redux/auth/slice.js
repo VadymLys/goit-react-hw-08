@@ -16,15 +16,13 @@ const authSlice = createSlice({
     builder
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        console.log(action.payload.user);
+
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        console.log(action.payload.user);
         state.token = action.payload.token;
-        console.log(action.payload.token);
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state) => {
@@ -36,15 +34,22 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        console.log(action.payload.user);
-        state.token = action.payload.token;
-        console.log(action.payload.token);
-        state.isLoggedIn = true;
+        if (action.payload.token && action.payload.user) {
+          state.user = action.payload.user;
+          state.token = action.payload.token;
+          state.isLoggedIn = true;
+        } else {
+          state.isLoggedIn = false;
+          state.token = null;
+        }
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, (state) => {
+      .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
+        console.error("Error refreshing user:", action.error.message);
+        state.isLoggedIn = false;
+        state.token = null;
+        state.user = { name: null, email: null };
       });
   },
 });

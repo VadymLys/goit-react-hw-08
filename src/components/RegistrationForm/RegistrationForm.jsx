@@ -40,14 +40,7 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(register(values))
-      .unwrap()
-      .then((res) => {
-        console.log("Registration successful:", res);
-      })
-      .catch((error) => {
-        console.error("Registration failed:", error);
-      });
+    dispatch(register(values));
     actions.resetForm();
   };
   return (

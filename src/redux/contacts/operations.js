@@ -7,7 +7,7 @@ export const fetchContacts = createAsyncThunk(
   async ({ page = 1, perPage = 10 }, thunkApi) => {
     try {
       const res = await axios.get(`/contacts?page=${page}&perPage=${perPage}`);
-      console.log("Response from API:", res.data); // Логування відповіді
+
       return {
         contacts: res.data.data.contacts,
         total: res.data.data.total,
@@ -24,7 +24,7 @@ export const addContact = createAsyncThunk(
   async (contact, thunkApi) => {
     try {
       const res = await axios.post("/contacts", contact);
-      console.log(res.data);
+
       return res.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
