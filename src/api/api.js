@@ -1,5 +1,5 @@
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3000"; //"https://backend-for-phone-book.onrender.com";
+axios.defaults.baseURL = "https://backend-for-phone-book.onrender.com";
 axios.defaults.withCredentials = true;
 
 export const setAuthHeader = (persistedToken) => {
